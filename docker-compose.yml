@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  hwp-parser:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: hwp-parser:latest
+    container_name: hwp-parser
+    volumes:
+      # Mount local data directory to container
+      - ./data:/app/data
+      # Mount output directory
+      - ./output:/app/output
+    # Override entrypoint for custom usage
+    # Example: docker-compose run hwp-parser --input /app/data/sample.hwp --mode text
+    stdin_open: true
+    tty: true
